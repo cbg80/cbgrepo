@@ -1,0 +1,7 @@
+{
+	"name" : "imagethread/imagethread",
+	"require-dev" : {
+		"php" : ">=7.0.0",
+		"phpdocumentor/phpdocumentor" : "~2.9"
+	}
+}
