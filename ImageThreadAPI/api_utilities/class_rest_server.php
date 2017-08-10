@@ -32,7 +32,6 @@ class RestServer
 		}
 		return $contentType;
 	}
-	//TODO Añadir el internet media type a la respuesta json
 	function response($data, $status = 200)
 	{
 		$this->_code = $status;

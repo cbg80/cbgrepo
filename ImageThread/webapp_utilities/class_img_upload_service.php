@@ -23,6 +23,7 @@ class ImageUploadService
      * Relative path to file where total number of views of the web page is stored
      */
     const relPathToViewCounterFile = __DIR__ . '/../assets/view_counter.dat';
+    //TODO Encapsulate view counter file management in a different service
     /**
      * Returns the sha1 hash of the file whose absolute path is got as the first argument
      * 
