@@ -12,10 +12,10 @@ RUN apt-get update && \
 ENV DR /var/www/html
 ARG LDRB=html_root
 #cambiar en función del proyecto a desplegar#
-#ARG REMOTE_DIR=image-thread.cbg
-#ARG LOCAL_DIR=imageThread
-ARG REMOTE_DIR=image-thread-api.cbg
-ARG LOCAL_DIR=imageThreadAPI
+ARG REMOTE_DIR=image-thread.cbg
+ARG LOCAL_DIR=imageThread
+#ARG REMOTE_DIR=image-thread-api.cbg
+#ARG LOCAL_DIR=imageThreadAPI
 #FIN cambiar en función del proyecto a desplegar#
 ADD ./$LOCAL_DIR/config/$REMOTE_DIR.conf /etc/apache2/sites-available/$REMOTE_DIR.conf
 RUN apt-get update && \
@@ -55,17 +55,17 @@ RUN apt-get update && \
 	apt-get --assume-yes install graphviz && \
 	apt-get clean
 #esto es sólo necesario para el despliegue del proyecto ImageThreadAPI#
-WORKDIR $DR/$REMOTE_DIR/$LDRB
-RUN mkdir webapp_model && \
-	mkdir assets && \
-	mkdir webapp_controllers && \
-	mkdir webapp_utilities
+#WORKDIR $DR/$REMOTE_DIR/$LDRB
+#RUN mkdir webapp_model && \
+#	mkdir assets && \
+#	mkdir webapp_controllers && \
+#	mkdir webapp_utilities
 #FIN esto es sólo necesario para el despliegue del proyecto ImageThreadAPI#
 EXPOSE 80
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 #cambiar en función del proyecto a desplegar#
-#ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread.cbg/html_root", "imageThread"]
-ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread-api.cbg/html_root", "imageThreadAPI"]
+ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread.cbg/html_root", "imageThread"]
+#ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread-api.cbg/html_root", "imageThreadAPI"]
 #FIN cambiar en función del proyecto a desplegar#
