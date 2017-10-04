@@ -1,0 +1,17 @@
+cbg-dbserver:
+#   build: ./../../../../ddbb/config
+    image: cbg80/mariadb-utf8:latest
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./../../../../ddbb/projects/symfony/SymfonyDraft:/var/lib/mysql
+cbg-webserver:
+    build: ./..
+    ports:
+        - "80:80"
+#La siguiente entrada, una vez concluido el desarrollo, será sustituida por la 
+#instrucción COPY equivalente en el Dockerfile correspondiente.
+    volumes:
+        - ./../../../../../../SymfonyDraft:/var/www/html/symfony-draft.cbg
+    links:
+        - cbg-dbserver:mariadb
