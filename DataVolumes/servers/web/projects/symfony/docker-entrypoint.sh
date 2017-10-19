@@ -22,6 +22,8 @@ sed -i -e "s/database_host: 127.0.0.1/database_host: '%env(MARIADB_PORT_3306_TCP
 sed -i -e "s/database_port: null/database_port: 3306/" app/config/parameters.yml
 sed -i -e "s/database_name: symfony/database_name: ImageThread/" app/config/parameters.yml
 sed -i -e "s/database_password: null/database_password: '%env(MARIADB_ENV_MYSQL_ROOT_PASSWORD)%'/" app/config/parameters.yml
+#including the character set and collation
+sed -i -e "s/charset: UTF8/charset: utf8mb4  #Replaces UTF8\n        default_table_options:\n            charset: utf8mb4\n            collate: utf8mb4_unicode_ci/" app/config/config.yml
 #Elimina de la aplicación todos los recursos correspondientes a la documentación de esta
 #rm -Rfv ./doc
 #Vuelve a generar todos los recursos correspondientes a la documentación de la aplicación
