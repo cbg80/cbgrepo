@@ -24,6 +24,9 @@ sed -i -e "s/database_name: symfony/database_name: ImageThread/" app/config/para
 sed -i -e "s/database_password: null/database_password: '%env(MARIADB_ENV_MYSQL_ROOT_PASSWORD)%'/" app/config/parameters.yml
 #including the character set and collation
 sed -i -e "s/charset: UTF8/charset: utf8mb4  #Replaces UTF8\n        default_table_options:\n            charset: utf8mb4\n            collate: utf8mb4_unicode_ci/" app/config/config.yml
+#decoupling the specific app configuration from symfony configuration
+echo "image_thread:" >> app/config/routing.yml
+echo "    resource: '@AppBundle/Resources/config/routing.yml'" >> app/config/routing.yml
 #Elimina de la aplicación todos los recursos correspondientes a la documentación de esta
 #rm -Rfv ./doc
 #Vuelve a generar todos los recursos correspondientes a la documentación de la aplicación
