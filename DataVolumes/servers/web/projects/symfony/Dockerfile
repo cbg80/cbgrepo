@@ -11,8 +11,10 @@ RUN apt-get update && \
 	echo $TZ > /etc/timezone
 ENV DR /var/www/html
 #cambiar en función del proyecto a desplegar#
-ARG REMOTE_DIR=symfony-draft.cbg
-ARG LOCAL_DIR=SymfonyDraft
+#ARG REMOTE_DIR=symfony-draft.cbg
+ARG REMOTE_DIR=image-thread.cbg
+#ARG LOCAL_DIR=SymfonyDraft
+ARG LOCAL_DIR=SymfonyImageThread
 #FIN cambiar en función del proyecto a desplegar#
 ADD ./$LOCAL_DIR/config/$REMOTE_DIR.conf /etc/apache2/sites-available/$REMOTE_DIR.conf
 RUN apt-get update && \
@@ -60,5 +62,6 @@ RUN chmod +x /docker-entrypoint.sh && \
 	chmod +x /symfony-dev-cache-cleaner.sh
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 #cambiar en función del proyecto a desplegar#
-ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/foo", "/var/www/html/symfony-draft.cbg", "SymfonyDraft"]
+#ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/foo", "/var/www/html/symfony-draft.cbg", "SymfonyDraft"]
+ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/foo", "/var/www/html/image-thread.cbg", "SymfonyImageThread"]
 #FIN cambiar en función del proyecto a desplegar#
