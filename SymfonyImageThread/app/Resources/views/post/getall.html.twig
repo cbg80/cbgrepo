@@ -1,0 +1,28 @@
+{# app/Resources/views/post/getall.html.twig #}
+{% extends 'post/base.html.twig' %}
+{% block title %}
+	{{ parent() }}/Posts
+{% endblock %}
+{% block topbar %}
+	<section>
+		<div style="overflow:hidden">
+			<div style="float:left">
+				Posts:&nbsp;{{ totals }}
+			</div>
+			<div style="float:left">
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				{{ form_end(form) }}
+			</div>
+			<!-- <div style="float:left">Views:&nbsp;{# views #}</div> -->
+		</div>
+	</section>
+{% endblock %}
+{% block link %}
+	<a href="{{ path('post_maker') }}">Reply</a>
+{% endblock %}
+{% block body %}
+    {% for post in posts %}
+    	{{ include('post/post_details.html.twig', { 'post': post }) }}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+post_exporter:
+    path: /post/export
+    defaults: { _controller: 'AppBundle:Post:export' }
+post_allgetter:
+    path: /post/getall
+    defaults: { _controller: 'AppBundle:Post:getAll' }
+post_maker:
+    path: /post/make
+    defaults: { _controller: 'AppBundle:Post:make' }

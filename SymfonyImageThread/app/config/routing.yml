@@ -1,0 +1,5 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+image_thread:
+    resource: '@AppBundle/Resources/config/routing.yml'

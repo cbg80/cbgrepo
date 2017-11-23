@@ -1,0 +1,13 @@
+{# app/Resources/views/post/make.html.twig #}
+{% extends 'post/base.html.twig' %}
+{% block title %}
+	{{ parent() }}/Reply
+{% endblock %}
+{% block body %}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+{% endblock %}
+{% block link %}
+	<a href="{{ path('post_allgetter') }}">View posts</a>
+{% endblock %}

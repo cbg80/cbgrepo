@@ -1,0 +1,22 @@
+# src/AppBundle/Resources/config/doctrine/Post.orm.yml
+AppBundle\Entity\Post:
+    type: entity
+    repositoryClass: AppBundle\Repository\PostRepository
+    table: posts
+    indexes:
+      idx_timestamp:
+          columns: [ timestamp ]
+    id:
+        id:
+            type: integer
+            length: 10
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            nullable: true
+        image:
+            type: string
+            column: image_file_name
+        timestamp:
+            type: datetime

@@ -1,0 +1,23 @@
+{# app/Resources/views/post/base.html.twig #}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>{% block title %}Image Thread{% endblock %}</title>
+	</head>
+	<body>
+		<article>
+			{% block topbar %}{% endblock %}
+			<section>
+				<div>
+					{% block link %}{% endblock %}
+				</div>
+			</section>
+			<section>
+				<div>
+					{% block body %}{% endblock %}
+				</div>
+			</section>
+		</article>
+	</body>
+</html>

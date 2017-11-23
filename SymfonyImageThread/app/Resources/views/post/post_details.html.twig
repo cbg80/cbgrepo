@@ -1,0 +1,5 @@
+{# app/Resources/views/post/post_details.html.twig #}
+<div>
+    <p>{{ post.getTitle }}</p>
+    <img src="{{ absolute_url(asset(upload_dir ~ '/' ~ post.getImage.getBasename)) }}" alt="{{ post.getTitle }}" />
+</div>
