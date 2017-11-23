@@ -27,6 +27,10 @@ sed -i -e "s/charset: UTF8/charset: utf8mb4  #Replaces UTF8\n        default_tab
 #decoupling the specific app configuration from symfony configuration
 echo "image_thread:" >> app/config/routing.yml
 echo "    resource: '@AppBundle/Resources/config/routing.yml'" >> app/config/routing.yml
+#activating the serializer
+sed -i -e "s/#serializer: { enable_annotations: true }/#serializer: { enable_annotations: true }\n    serializer: { enabled: true }/" app/config/config.yml
+#importing the service configuration specific for the app
+sed -i -e "s/- { resource: services.yml }/- { resource: services.yml }\n    - { resource: '@AppBundle\/Resources\/config\/services.yml' }/" app/config/config.yml
 #Elimina de la aplicación todos los recursos correspondientes a la documentación de esta
 #rm -Rfv ./doc
 #Vuelve a generar todos los recursos correspondientes a la documentación de la aplicación

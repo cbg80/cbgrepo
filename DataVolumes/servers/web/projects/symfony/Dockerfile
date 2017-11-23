@@ -57,8 +57,9 @@ COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh && \
 	echo "/usr/bin/php $DR/$REMOTE_DIR/bin/console cache:clear" > /symfony-dev-cache-cleaner.sh && \
 	echo "chown -R www-data:www-data $DR/$REMOTE_DIR/var/cache/dev" >> /symfony-dev-cache-cleaner.sh && \
-	echo "chmod -R 0664 $DR/$REMOTE_DIR/var/cache/dev" >> /symfony-dev-cache-cleaner.sh && \
-	echo "find $DR/$REMOTE_DIR/var/cache/dev -type d -iname "*" -print0 | xargs -I {} -0 chmod 0774 {}" >> /symfony-dev-cache-cleaner.sh && \
+	echo "chmod -R 0774 $DR/$REMOTE_DIR/var/cache/dev" >> /symfony-dev-cache-cleaner.sh && \
+#	echo "chmod -R 0664 $DR/$REMOTE_DIR/var/cache/dev" >> /symfony-dev-cache-cleaner.sh && \
+#	echo "find $DR/$REMOTE_DIR/var/cache/dev -type d -iname "*" -print0 | xargs -I {} -0 chmod 0774 {}" >> /symfony-dev-cache-cleaner.sh && \
 	chmod +x /symfony-dev-cache-cleaner.sh
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 #cambiar en función del proyecto a desplegar#
