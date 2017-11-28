@@ -7,13 +7,12 @@
 namespace AppBundle\Normalizer;
 
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\SerializerAwareNormalizer;
 use AppBundle\Entity\Post;
 
 /**
  * Encapsulates the normalization of any Post for downloading as CSV
  */
-class PostNormalizer extends SerializerAwareNormalizer implements NormalizerInterface
+class PostNormalizer implements NormalizerInterface
 {
 
     /**

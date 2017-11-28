@@ -29,7 +29,7 @@ class PostController extends Controller
     private function getExportingForm()
     {
         return $this->createFormBuilder()
-        ->setAction('post_exporter')
+        ->setAction($this->generateUrl('post_exporter'))
         ->setMethod('GET')
         ->add('Export', SubmitType::class)
         ->getForm()
@@ -71,9 +71,9 @@ class PostController extends Controller
      * @param Response $response
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function exportAction(FormInterface $exportingForm, EntityManagerInterface $em, Request $request, CSVExporter $csvExporter, ZipArchiver $zipArchiver, Response $response)
+    public function exportAction(EntityManagerInterface $em, Request $request, CSVExporter $csvExporter, ZipArchiver $zipArchiver)
     {
-        if (!isset($exportingForm) or ($exportingForm->handleRequest($request) and !$exportingForm->isSubmitted())) {
+        if (!($arrayExportingForm = $request->query->get('form')) or !isset($arrayExportingForm['_token']) or $arrayExportingForm['_token'] == '') {
             return $this->redirectToRoute('post_allgetter');
         }
         
@@ -88,6 +88,7 @@ class PostController extends Controller
         $zipArchivePath = $zipArchiver->archive($csvFileObject);
         $zipArchiveSize = filesize($zipArchivePath);
 
+        $response = new Response();
         //$response->headers->set('Content-Description', 'File Transfer'))
         $response->headers->set('Content-Type', 'application/zip');
         $response->headers->set('Content-Disposition', 'attachment; filename="posts.zip"');

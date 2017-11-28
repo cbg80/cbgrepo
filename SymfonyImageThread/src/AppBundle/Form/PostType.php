@@ -46,28 +46,29 @@ class PostType extends AbstractType
             )
             , 'constraints' => array(
                 ($imgConstraint = new Image(array(
-                    'mimeTypes' => $options['uploaded_resources_allowed_mime_types']
-                    , 'maxWidth' => $options['uploaded_resources_max_width']
+                /*Already checked*/'mimeTypes' => $options['uploaded_resources_allowed_mime_types']
+                    ,/*Already checked*/ 'maxWidth' => $options['uploaded_resources_max_width']
                     , /*Already checked*/'maxHeight' => $options['uploaded_resources_max_height']
+                    // TODO - Get an image properly corrupted
                     , 'detectCorrupted' => TRUE
-                    , 'maxSize' => $options['uploaded_resources_max_weigth']
+                    , /*Already checked*/'maxSize' => $options['uploaded_resources_max_weigth']
                     )
                 ))
             )
-        ))
+        ))        
         ->add('MAX_FILE_SIZE', HiddenType::class, array('data' => $options['uploaded_resources_max_weigth']
             , 'mapped' => FALSE
         ))
         ->add('Reply', SubmitType::class)
         ;
         // TODO - Declare the following code inside an event subscriber
-        $builder/*->get('image')*/->addEventListener(FormEvents::POST_SUBMIT
+        $builder->get('image')->addEventListener(FormEvents::POST_SUBMIT
             , function (FormEvent $event) use ($imgConstraint) {
-                /* @var $post Post */
-                $post = $event->getForm()/*->getParent()*/->getData();
+                /* @var $postImage Symfony\Component\HttpFoundation\File\UploadedFile */
+                $postImage = $event->getForm()->getData();
                 
-                $imgConstraint->mimeTypesMessage = $post->getImage()->getMimeType() . ' is not an allowed mime type for uploaded resource';
-                $imgConstraint->corruptedMessage = 'The image file ' . $post->getImage()->getBasename() . '.' . $post->getImage()->getExtension() . ' is corrupted';
+                $imgConstraint->mimeTypesMessage = $postImage->getMimeType() . ' is not an allowed mime type for uploaded resource';
+                $imgConstraint->corruptedMessage = 'The image file ' . $postImage->getBasename() . ' is corrupted';
         });
     }
     /**

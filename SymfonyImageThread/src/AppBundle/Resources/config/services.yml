@@ -13,25 +13,13 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-    #app.image_upload_listener: '@AppBundle\EventListener\ImageUploadListener'
     AppBundle\EventListener\ImageUploadListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: postLoad }
-    #app.file_uploader: '@AppBundle\Service\FileUploader'
     AppBundle\Service\FileUploader:
         arguments:
             $targetDir: '%uploaded_resources_dir%'
-    app.csv_exporter: '@AppBundle\Service\CSVExporter'
-    AppBundle\Service\CSVExporter:
-        arguments:
-            $postSerializer: '@serializer'
-    app.zip_archiver: '@AppBundle\Service\ZipArchiver'
     AppBundle\Service\ZipArchiver:
         arguments:
             $targetDir: '%uploaded_resources_dir%'
-    app.post_normalizer: '@AppBundle\Normalizer\PostNormalizer'
-    AppBundle\Normalizer\PostNormalizer:
-        public: false
-        tags: [serializer.normalizer]
-        priority: 99

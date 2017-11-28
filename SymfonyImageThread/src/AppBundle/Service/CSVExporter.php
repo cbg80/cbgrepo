@@ -32,7 +32,7 @@ class CSVExporter
      * @param array $data
      * @param string $schemeAndHttpHost 'http://image-thread.cbg/'
      * @param string $uploadedResourcesDir 'uploads'
-     * @return File
+     * @return NULL|File
      */
     public function export(array $data, string $schemeAndHttpHost, string $uploadedResourcesDir)
     {
@@ -42,6 +42,11 @@ class CSVExporter
             'base_url' => $schemeAndHttpHost
             , 'upload_dir' => $uploadedResourcesDir
         ));
+        
+        //Removes the header titles of each column in the CSV file
+        $arrayPostsAsCSV = explode("\n", $postsAsCSV);
+        array_shift($arrayPostsAsCSV);
+        $postsAsCSV = implode("\n", $arrayPostsAsCSV);
         
         if (file_put_contents($pathToCSV, $postsAsCSV) !== FALSE) {
             $oldPathToCSV = $pathToCSV;
