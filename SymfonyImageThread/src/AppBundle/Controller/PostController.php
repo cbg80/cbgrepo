@@ -73,10 +73,12 @@ class PostController extends Controller
      */
     public function exportAction(EntityManagerInterface $em, Request $request, CSVExporter $csvExporter, ZipArchiver $zipArchiver)
     {
-        if (!($arrayExportingForm = $request->query->get('form')) or !isset($arrayExportingForm['_token']) or $arrayExportingForm['_token'] == '') {
+        $exportingForm = $this->getExportingForm()->handleRequest($request);
+        
+        if (!$exportingForm->isSubmitted() or !$exportingForm->isValid()) {
             return $this->redirectToRoute('post_allgetter');
         }
-        
+
         $posts = $em->getRepository(Post::class)->findAll();
         
         if (!is_array($posts) or count($posts) == 0) {
