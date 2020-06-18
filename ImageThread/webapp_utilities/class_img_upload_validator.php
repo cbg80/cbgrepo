@@ -11,8 +11,6 @@
  * @package webapp_utilities
  */
 // @ php.ini
-// upload_max_filesize = 20M
-// post_max_size = 40M
 class ImageUploadValidator {
 	private $_imgUploadInfo;
 	private $_mimeType;
@@ -107,5 +105,7 @@ class ImageUploadValidator {
 			throw new RuntimeException ( 'Not allowed mime type', - 2 );
 		}
 	}
+// upload_max_filesize = 2M
+// post_max_size = 8M
 }
 ?>
