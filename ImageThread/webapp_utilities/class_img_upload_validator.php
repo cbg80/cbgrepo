@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * Declares ImageUploadValidator class
+ * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
+ */
+
+/**
+ * Encapsulates methods to validate the file of any post image uploaded
+ *
+ * @package webapp_utilities
+ */
 // @ php.ini
 // upload_max_filesize = 20M
 // post_max_size = 40M
