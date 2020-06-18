@@ -11,7 +11,6 @@
  * @package webapp_utilities
  */
 // @ php.ini
-class ImageUploadValidator {
 	private $_imgUploadInfo;
 	private $_mimeType;
 	private static $_allowedMimeTypes = [ 
@@ -107,5 +106,8 @@ class ImageUploadValidator {
 	}
 // upload_max_filesize = 2M
 // post_max_size = 8M
+class ImageUploadValidator
+{
+
 }
 ?>
