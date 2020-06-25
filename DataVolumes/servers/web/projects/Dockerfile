@@ -33,24 +33,24 @@ RUN apt-get update && \
 	wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
 	echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
 	apt-get update && \
-	apt-get --assume-yes install php7.1 libapache2-mod-php7.1 libapache2-mod-php7.1-dbgsym php-xdebug \
-			php7.1-cgi php7.1-cgi-dbgsym php7.1-cli php7.1-cli-dbgsym php7.1-common php7.1-common-dbgsym \
-			php7.1-curl php7.1-curl-dbgsym php7.1-fpm php7.1-fpm-dbgsym php7.1-gd php7.1-gd-dbgsym \
-			php7.1-intl php7.1-intl-dbgsym php7.1-json php7.1-json-dbgsym php7.1-mbstring \
-			php7.1-mbstring-dbgsym php7.1-mysql php7.1-mysql-dbgsym php7.1-readline php7.1-readline-dbgsym \
-			php7.1-xml php7.1-xml-dbgsym php7.1-zip php7.1-zip-dbgsym \
+	apt-get --assume-yes install php7.4 libapache2-mod-php7.4 php-xdebug \
+			php7.4-cgi php7.4-cli php7.4-common \
+			php7.4-curl php7.4-fpm php7.4-gd \
+			php7.4-intl php7.4-json php7.4-mbstring \
+			php7.4-mysql php7.4-readline \
+			php7.4-xml php7.4-zip php7.4-xsl \
 			curl git && \
-	apt-get --assume-yes --only-upgrade install php7.1 libapache2-mod-php7.1 libapache2-mod-php7.1-dbgsym \
-			php-xdebug php7.1-cgi php7.1-cgi-dbgsym php7.1-cli php7.1-cli-dbgsym php7.1-common \
-			php7.1-common-dbgsym php7.1-curl php7.1-curl-dbgsym php7.1-fpm php7.1-fpm-dbgsym php7.1-gd \
-			php7.1-gd-dbgsym php7.1-intl php7.1-intl-dbgsym php7.1-json php7.1-json-dbgsym php7.1-mbstring \
-			php7.1-mbstring-dbgsym php7.1-mysql php7.1-mysql-dbgsym php7.1-readline php7.1-readline-dbgsym \
-			php7.1-xml php7.1-xml-dbgsym php7.1-zip php7.1-zip-dbgsym && \
+	#apt-get --assume-yes --only-upgrade install php7.4 libapache2-mod-php7.4 \
+			#php-xdebug php7.4-cgi php7.4-cli php7.4-common \
+			#php7.4-curl php7.4-fpm php7.4-gd \
+			#php7.4-intl php7.4-json php7.4-mbstring \
+			#php7.4-mysql php7.4-readline \
+			#php7.4-xml php7.4-zip php7.4-xsl && \
 	a2enmod proxy_fcgi setenvif && \
-	a2enconf php7.1-fpm && \
+	a2enconf php7.4-fpm && \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-	echo "xdebug.remote_enable=1" >> /etc/php/7.1/mods-available/xdebug.ini && \
 	echo "xdebug.remote_host=172.17.0.1" >> /etc/php/7.1/mods-available/xdebug.ini && \
+	echo "xdebug.remote_enable=1" >> /etc/php/7.4/mods-available/xdebug.ini && \
 	apt-get update && \
 	apt-get --assume-yes install graphviz && \
 	apt-get clean
