@@ -2,14 +2,16 @@
 #Se situa en el directorio raíz de la aplicación desplegada
 cd $1
 #Elimina del proyecto todo el código correspondiente a las dependencias de aquel
-rm -Rfv ./vendor
-#Vuelve  a importar el código correspondiente a las dependencias del proyecto
-composer install
+#rm -Rfv ./vendor
+#Vuelve  a importar el código correspondiente a las dependencias del proyecto. Para una importación de cero
+#borrar el archivo composer.lock. Este es el que se parsea en caso de existir tras ejecutar el siguiente
+#comando
+#composer install
 #Actualiza el código correspondiente a las dependencias del proyecto
 composer update
 
 #Elimina del proyecto todos los recursos correspondientes a la documentación de este
-rm -Rfv ./doc
+#rm -Rfv ./doc
 #Vuelve a generar todos los recursos correspondientes a la documentación de este
 ./vendor/bin/phpdoc -d . -t ./doc --template="responsive" --title="$2" --sourcecode --ignore "vendor/*"
 
@@ -32,5 +34,4 @@ find ./ -type d -iname "*" -print0 | xargs -I {} -0 chmod 0774 {}
 chown root:root ./vendor/bin/phpdoc
 #Asigna los permisos adecuados al comando generador de la documentación del proyecto
 chmod 0744 ./vendor/bin/phpdoc
-
 $3 $4 $5
