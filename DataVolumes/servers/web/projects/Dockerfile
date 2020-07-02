@@ -24,35 +24,36 @@ RUN apt-get update && \
 	sed -i -e "s/#AddDefaultCharset UTF-8/AddDefaultCharset UTF-8/" /etc/apache2/conf-available/charset.conf && \
 	update-rc.d apache2 defaults && \
 	mkdir -p $DR/$REMOTE_DIR/$LDRB && \
-#echo "0.0.0.0 image-thread.cbg image-thread-api.cbg" > /etc/hosts#
 	mkdir -p /var/log/apache2/$REMOTE_DIR/ && \
 	a2ensite $REMOTE_DIR.conf && \
+	a2dissite 000-default.conf && \
 #	apt-get update && \
 	apt-get --assume-yes install wget && \
 	apt-get --assume-yes install apt-transport-https lsb-release ca-certificates && \
 	wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
 	echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
 	apt-get update && \
-	apt-get --assume-yes install php7.1 libapache2-mod-php7.1 libapache2-mod-php7.1-dbgsym php-xdebug \
-			php7.1-cgi php7.1-cgi-dbgsym php7.1-cli php7.1-cli-dbgsym php7.1-common php7.1-common-dbgsym \
-			php7.1-curl php7.1-curl-dbgsym php7.1-fpm php7.1-fpm-dbgsym php7.1-gd php7.1-gd-dbgsym \
-			php7.1-intl php7.1-intl-dbgsym php7.1-json php7.1-json-dbgsym php7.1-mbstring \
-			php7.1-mbstring-dbgsym php7.1-mysql php7.1-mysql-dbgsym php7.1-readline php7.1-readline-dbgsym \
-			php7.1-xml php7.1-xml-dbgsym php7.1-zip php7.1-zip-dbgsym \
+	apt-get --assume-yes install php7.4 libapache2-mod-php7.4 php-xdebug \
+			php7.4-cgi php7.4-cli php7.4-common \
+			php7.4-curl php7.4-fpm php7.4-gd \
+			php7.4-intl php7.4-json php7.4-mbstring \
+			php7.4-mysql php7.4-readline \
+			php7.4-xml php7.4-zip php7.4-xsl \
 			curl git && \
-	apt-get --assume-yes --only-upgrade install php7.1 libapache2-mod-php7.1 libapache2-mod-php7.1-dbgsym \
-			php-xdebug php7.1-cgi php7.1-cgi-dbgsym php7.1-cli php7.1-cli-dbgsym php7.1-common \
-			php7.1-common-dbgsym php7.1-curl php7.1-curl-dbgsym php7.1-fpm php7.1-fpm-dbgsym php7.1-gd \
-			php7.1-gd-dbgsym php7.1-intl php7.1-intl-dbgsym php7.1-json php7.1-json-dbgsym php7.1-mbstring \
-			php7.1-mbstring-dbgsym php7.1-mysql php7.1-mysql-dbgsym php7.1-readline php7.1-readline-dbgsym \
-			php7.1-xml php7.1-xml-dbgsym php7.1-zip php7.1-zip-dbgsym && \
+	#apt-get --assume-yes --only-upgrade install php7.4 libapache2-mod-php7.4 \
+			#php-xdebug php7.4-cgi php7.4-cli php7.4-common \
+			#php7.4-curl php7.4-fpm php7.4-gd \
+			#php7.4-intl php7.4-json php7.4-mbstring \
+			#php7.4-mysql php7.4-readline \
+			#php7.4-xml php7.4-zip php7.4-xsl && \
 	a2enmod proxy_fcgi setenvif && \
-	a2enconf php7.1-fpm && \
+	a2enconf php7.4-fpm && \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-	echo "xdebug.remote_enable=1" >> /etc/php/7.1/mods-available/xdebug.ini && \
-	echo "xdebug.remote_host=172.17.0.1" >> /etc/php/7.1/mods-available/xdebug.ini && \
+	echo "ServerName $REMOTE_DIR" >> /etc/apache2/apache2.conf && \
+	echo "xdebug.remote_enable=1" >> /etc/php/7.4/mods-available/xdebug.ini && \
+	echo "xdebug.remote_connect_back=1" >> /etc/php/7.4/mods-available/xdebug.ini && \
 	apt-get update && \
-	apt-get --assume-yes install graphviz && \
+	apt-get --assume-yes install graphviz unzip && \
 	apt-get clean
 #esto es sólo necesario para el despliegue del proyecto ImageThreadAPI#
 #WORKDIR $DR/$REMOTE_DIR/$LDRB
@@ -64,8 +65,7 @@ RUN apt-get update && \
 EXPOSE 80
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-#cambiar en función del proyecto a desplegar#
-ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread.cbg/html_root", "imageThread"]
-#ENTRYPOINT ["/docker-entrypoint.sh", "/var/www/html/image-thread-api.cbg/html_root", "imageThreadAPI"]
-#FIN cambiar en función del proyecto a desplegar#
+ENV LDRB $LDRB
+ENV REMOTE_DIR $REMOTE_DIR
+ENV LOCAL_DIR $LOCAL_DIR
+ENTRYPOINT /docker-entrypoint.sh $DR/$REMOTE_DIR/$LDRB $LOCAL_DIR /usr/sbin/apache2ctl -D FOREGROUND
