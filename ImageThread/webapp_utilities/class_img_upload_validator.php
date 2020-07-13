@@ -47,7 +47,7 @@ class ImageUploadValidator
 
     const maxHeight = 1080;
 
-    const maxWeigth = 20971520;
+    const maxWeigth = 2097152;
 
     /**
      * Class constructor
