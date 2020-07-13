@@ -5,6 +5,7 @@
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
 error_reporting(E_ALL);
+rewriteRequest();
 rootRequest();
 
 function rootRequest()
@@ -46,4 +47,14 @@ function rootRequest()
             exit();
             break;
     }
+}
+
+function rewriteRequest()
+{
+    if (!isset($_REQUEST['action']) && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SERVER['CONTENT_TYPE']) && 
+        strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') !== FALSE) {
+            $_REQUEST['action'] = 'doMakePost';
+            $_POST['imgTitle'] = '';
+            $_FILES['imgFile']['error'] = UPLOAD_ERR_INI_SIZE;
+        }
 }
