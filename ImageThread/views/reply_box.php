@@ -6,7 +6,7 @@ function printOutReplyBox() {
 <form enctype='multipart/form-data' action='../webapp_controllers/front_controller.php' method='POST'>
 <input type='hidden' name='action' value='doMakePost'/>
 Image title:&nbsp<input type='text' name='imgTitle' placeholder='short picture's description'/><br/>
-<input type='hidden' name='MAX_FILE_SIZE' value='20971520'/>
+<input type='hidden' name='MAX_FILE_SIZE' value='2097152'/>
 Picture:&nbsp;<input type='file' name='imgFile' required/>%s<br/>
 <input type='submit' value='Post'/>
 </form>
