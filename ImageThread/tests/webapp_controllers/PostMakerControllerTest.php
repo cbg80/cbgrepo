@@ -1,11 +1,23 @@
 <?php
+/**
+ * Declares PostMakerControllerTest class
+ * 
+ * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
+ */
 namespace tests\webapp_controllers;
 
 use PHPUnit\Framework\TestCase;
-
+/**
+ * Encapsulates methods to test the creation of brand new posts
+ *
+ * @package tests\webapp_controllers
+ */
 class PostMakerControllerTest extends TestCase
 {
 
+    /**
+     * Test the creation of brand new posts along with some error use cases
+     */
     public function testMakePost()
     {
         //$this->assertEquals('ImageThread', ucfirst('image' . 'Thread'));
