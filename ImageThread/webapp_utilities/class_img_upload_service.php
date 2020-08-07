@@ -46,7 +46,7 @@ class ImageUploadService
         $imgFileNameWithExt = sprintf('%s.%s', $imgFileName, $imgUploadMimeType);
         $retOfMovUpFile = $this->moveUploadedFile($imgUploadTmpName, ABS_PATH_TO_POST_IMG . $imgFileNameWithExt);
         if (! $retOfMovUpFile) {
-            throw new RuntimeException('Uploaded image cannot be move', - 1);
+            throw new RuntimeException('Uploaded image cannot be moved', - 1);
         } else {
             return $imgFileNameWithExt;
         }
