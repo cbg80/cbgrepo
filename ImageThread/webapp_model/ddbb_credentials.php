@@ -14,7 +14,7 @@ define ( 'SERVER', getenv ( 'MARIADB_PORT_3306_TCP_ADDR' ) );
 /**
  * Name of the application database
  */
-define ( 'DATABASE', 'ImageThread' );
+define ( 'DATABASE', getenv('DATABASE') );
 /**
  * Username of the mariadb server
  */
