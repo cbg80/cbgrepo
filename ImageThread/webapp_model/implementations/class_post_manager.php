@@ -74,5 +74,27 @@ class PostManagerImpl implements PostManager {
 		}
 		return $numPosts;
 	}
+	
+	/**
+	 * Removes the posts referenced by ID from the ddbb
+	 * @param array $postIdArr
+	 * @return bool
+	 */
+	public function removePosts(array $postIdArr): bool
+	{
+	    $placeHolders = implode(',', array_fill(0,count($postIdArr),'?'));
+	    $sql = "DELETE FROM `posts` WHERE `id` IN ($placeHolders)";
+	    $dataBase = new DataBase();
+	    $conn = $dataBase->getConn();
+	    try {
+	        $statement = $conn->prepare($sql);
+	        $ret = $statement->execute($postIdArr);
+	    } catch (PDOException $ex) {
+	        print 'ERROR: ' . $ex->getMessage() . '<br/>';
+	    } finally {
+	        $dataBase->closeConn();
+	    }
+	    return $ret;
+	}
 }
 ?>
