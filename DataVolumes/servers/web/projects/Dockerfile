@@ -1,4 +1,4 @@
-FROM debian:8.7
+FROM debian:9
 MAINTAINER Carlos Blanco <carlos.blanga@gmail.com>
 ENV LANG es_ES.UTF-8
 ENV TZ Europe/Madrid
