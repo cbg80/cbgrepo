@@ -6,4 +6,4 @@ RUN apt-get update && \
 COPY ./mariadb.cnf /etc/mysql/conf.d/mariadb.cnf
 EXPOSE 3306
 CMD ["mysqld"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
