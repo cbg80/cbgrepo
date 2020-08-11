@@ -56,7 +56,7 @@ class PostMakerController {
 		// $post = new Post($imageTitle, $imgPermName, 1234);
 		$postMgr = EntityManagerFactory::getPostManager ();
 		if (! ($ret = $postMgr->createPost ( $post ))) {
-		    $pathToImgFile = ImageUploadService::relPathToPostImages
+		    $pathToImgFile = ABS_PATH_TO_POST_IMG
 		                   . $imgPermName
 		    ;
 			$return = ImageUploadService::removeFileFromDir($pathToImgFile);

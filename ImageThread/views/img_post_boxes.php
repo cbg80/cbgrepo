@@ -15,7 +15,7 @@ EOT;
 EOT;
 		$htmlPosts = array ();
 		foreach ( $_REQUEST ['posts'] as $post ) {
-			$htmlPosts [] = sprintf ( $htmlPostFormat, $post->imageTitle, ImageUploadService::absPathToPostImages, $post->imageFileName, $post->imageTitle );
+		    $htmlPosts [] = sprintf ( $htmlPostFormat, $post->imageTitle, '/' . REL_PATH_TO_POST_IMG . '/', $post->imageFileName, $post->imageTitle );
 		}
 		$strHtmlPosts = implode ( PHP_EOL, $htmlPosts );
 		printf ( $htmlFormat, $strHtmlPosts );

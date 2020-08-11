@@ -4,6 +4,10 @@
  * Declares ImageUploadService class
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
+/**
+ * Imports constants holding storage paths of the app
+ */
+require_once __DIR__ . '/app_paths.php';
 
 /**
  * Encapsulates methods to manage the storing and naming of any post image uploaded
@@ -12,21 +16,6 @@
  */
 class ImageUploadService
 {
-
-    /*
-     * Relative path to permanent dir where any uploaded post image is stored
-     */
-    const relPathToPostImages = __DIR__ . '/../assets/img/';
-
-    /*
-     * Absolute path from the document root of the web app to permanent dir where any uploaded post image is stored
-     */
-    const absPathToPostImages = '/assets/img/';
-
-    /*
-     * Relative path to file where total number of views of the web page is stored
-     */
-    const relPathToViewCounterFile = __DIR__ . '/../assets/view_counter.dat';
 
     // TODO Encapsulate view counter file management in a different service
     /**
@@ -55,7 +44,7 @@ class ImageUploadService
     {
         $imgFileName = self::getImageName($imgUploadTmpName);
         $imgFileNameWithExt = sprintf('%s.%s', $imgFileName, $imgUploadMimeType);
-        $retOfMovUpFile = move_uploaded_file($imgUploadTmpName, self::relPathToPostImages . $imgFileNameWithExt);
+        $retOfMovUpFile = $this->moveUploadedFile($imgUploadTmpName, ABS_PATH_TO_POST_IMG . $imgFileNameWithExt);
         if (! $retOfMovUpFile) {
             throw new RuntimeException('Uploaded image cannot be move', - 1);
         } else {
@@ -83,7 +72,7 @@ class ImageUploadService
      */
     public static function zipCSVAndImages(string $pathToCSV): string
     {
-        chdir(self::relPathToPostImages);
+        chdir(ABS_PATH_TO_POST_IMG);
         $zip = new ZipArchive();
         $zipFileName = 'itzip' . md5(uniqid(basename($pathToCSV, '.csv'), TRUE)) . '.zip';
         if (($ret = $zip->open($zipFileName, ZipArchive::CREATE))) {
@@ -119,11 +108,11 @@ class ImageUploadService
     public static function getAndSetTotalNumberOfViews(bool $isGotOnly = FALSE): string
     {
         if ($isGotOnly) {
-            $fh = fopen(ImageUploadService::relPathToViewCounterFile, 'rb');
+            $fh = fopen(ABS_PATH_TO_VIEW_COUNTER_FILE, 'rb');
             $fhl = flock($fh, LOCK_SH);
             $numberOfViews = fgets($fh);
         } else {
-            $fh = fopen(self::relPathToViewCounterFile, 'c+b');
+            $fh = fopen(ABS_PATH_TO_VIEW_COUNTER_FILE, 'c+b');
             $fhl = flock($fh, LOCK_EX);
             $numberOfViews = fgets($fh, 10);
             $numberOfViews ++;
