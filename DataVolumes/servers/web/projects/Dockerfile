@@ -68,4 +68,6 @@ RUN chmod +x /docker-entrypoint.sh
 ENV LDRB $LDRB
 ENV REMOTE_DIR $REMOTE_DIR
 ENV LOCAL_DIR $LOCAL_DIR
+ENV REL_PATH_TO_POST_IMG assets/img
+ENV REL_PATH_TO_VIEW_COUNTER_FILE assets/view_counter.dat
 ENTRYPOINT /docker-entrypoint.sh $DR/$REMOTE_DIR/$LDRB $LOCAL_DIR /usr/sbin/apache2ctl -D FOREGROUND
