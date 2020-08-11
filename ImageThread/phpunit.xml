@@ -5,4 +5,8 @@
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
+  <php>
+    <env name="REL_PATH_TO_POST_IMG" value="tests/assets/img" force="true" />
+    <env name="REL_PATH_TO_VIEW_COUNTER_FILE" value="tests/assets/view_counter.dat" force="true" />
+  </php>
 </phpunit>
