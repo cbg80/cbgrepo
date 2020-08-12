@@ -124,4 +124,16 @@ class ImageUploadService
         $fhc = fclose($fh);
         return $numberOfViews;
     }
+
+    /**
+     * Wraps call to move_uploaded_file function so it is easy to overwrite when it comes to unit testing
+     *
+     * @param string $fileName
+     * @param string $destination
+     * @return bool
+     */
+    protected function moveUploadedFile(string $fileName, string $destination): bool
+    {
+        return move_uploaded_file($fileName, $destination);
+    }
 }
