@@ -4,5 +4,11 @@
 		"php" : ">=7.0.0",
 		"phpdocumentor/phpdocumentor" : "~2.9",
 		"phpunit/phpunit" : "~9.2"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"ImageThread\\" : "src"
+		}
+	},
 	}
 }
