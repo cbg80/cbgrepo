@@ -10,5 +10,9 @@
 			"ImageThread\\" : "src"
 		}
 	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"ImageThreadTests\\" : "tests"
+		}
 	}
 }
