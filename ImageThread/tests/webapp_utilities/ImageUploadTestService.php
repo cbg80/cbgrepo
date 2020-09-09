@@ -3,7 +3,7 @@
  * Declares ImageUploadTestService class
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
-namespace tests\webapp_utilities;
+namespace ImageThreadTests\webapp_utilities;
 
 /**
  * Imports the ImageUploadService class

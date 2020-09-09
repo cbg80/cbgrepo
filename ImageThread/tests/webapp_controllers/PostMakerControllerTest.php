@@ -4,12 +4,8 @@
  * 
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
-namespace tests\webapp_controllers;
+namespace ImageThreadTests\webapp_controllers;
 
-/**
- * Imports the PostMakerControllerDataProvider class
- */
-require_once __DIR__ . '/../data_providers/PostMakerControllerDataProvider.php';
 /**
  * Imports the factory of entity managers
  */
@@ -18,10 +14,6 @@ require_once __DIR__ . '/../../webapp_model/class_ent_mgr_factory.php';
  * Imports the post manager class PostManagerImpl
  */
 require_once __DIR__ . '/../../webapp_model/implementations/class_post_manager.php';
-/**
- * Imports the ImageUploadTestService class
- */
-require_once __DIR__ . '/../webapp_utilities/ImageUploadTestService.php';
 /**
  * Imports the PostMakerController class
  */
@@ -37,7 +29,8 @@ require_once __DIR__ . '/../../webapp_utilities/class_img_upload_validator.php';
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use tests\webapp_utilities\ImageUploadTestService;
+use ImageThreadTests\webapp_utilities\ImageUploadTestService;
+use ImageThreadTests\data_providers\PostMakerControllerDataProvider;
 
 /**
  * Encapsulates methods to test the creation of brand new posts
@@ -52,7 +45,7 @@ class PostMakerControllerTest extends TestCase
      *
      * @param array $fileUpInfoArr
      * @param array $exPropertyValuesArr
-     * @dataProvider tests\data_providers\PostMakerControllerDataProvider::makePostFaultProvider
+     * @dataProvider ImageThreadTests\data_providers\PostMakerControllerDataProvider::makePostFaultProvider
      */
     public function testMakePostFault(array $fileUpInfoArr, array $exPropertyValuesArr)
     {
@@ -90,7 +83,7 @@ class PostMakerControllerTest extends TestCase
      * Test the successful creation of brand new posts
      *
      * @param array $imgUpInfoArr
-     * @dataProvider tests\data_providers\PostMakerControllerDataProvider::makePostSuccessfulProvider
+     * @dataProvider ImageThreadTests\data_providers\PostMakerControllerDataProvider::makePostSuccessfulProvider
      */
     public function testMakePostSuccessful(array $imgUpInfoArr)
     {

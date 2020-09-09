@@ -4,7 +4,7 @@
  *
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
-namespace tests\data_providers;
+namespace ImageThreadTests\data_providers;
 
 /**
  * Encapsulates methods to provide use case data for test cases
@@ -15,7 +15,7 @@ class PostMakerControllerDataProvider
 {
 
     /**
-     * Provides use case data for method tests\webapp_controllers\PostMakerControllerTest::testMakePostSuccessful
+     * Provides use case data for method ImageThreadTests\webapp_controllers\PostMakerControllerTest::testMakePostSuccessful
      *
      * @return array
      */
@@ -37,7 +37,7 @@ class PostMakerControllerDataProvider
     }
 
     /**
-     * Provides use case data for method tests\webapp_controllers\PostMakerControllerTest::testMakePostFault
+     * Provides use case data for method ImageThreadTests\webapp_controllers\PostMakerControllerTest::testMakePostFault
      *
      * @return array
      */
