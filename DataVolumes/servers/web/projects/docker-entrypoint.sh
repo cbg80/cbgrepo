@@ -35,6 +35,9 @@ chown root:root ./vendor/bin/phpdoc
 #Asigna los permisos adecuados al comando generador de la documentación del proyecto
 chmod 0744 ./vendor/bin/phpdoc
 
+#refresca los scripts del autoloading
+composer du
+
 #Ejecuta los tests de la app
 php ./vendor/bin/phpunit
 
