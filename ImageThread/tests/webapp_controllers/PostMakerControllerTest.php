@@ -9,23 +9,23 @@ namespace ImageThreadTests\webapp_controllers;
 /**
  * Imports the factory of entity managers
  */
-require_once __DIR__ . '/../../webapp_model/class_ent_mgr_factory.php';
+require_once __DIR__ . '/../../src/webapp_model/class_ent_mgr_factory.php';
 /**
  * Imports the post manager class PostManagerImpl
  */
-require_once __DIR__ . '/../../webapp_model/implementations/class_post_manager.php';
+require_once __DIR__ . '/../../src/webapp_model/implementations/class_post_manager.php';
 /**
  * Imports the PostMakerController class
  */
-require_once __DIR__ . '/../../webapp_controllers/class_post_maker.php';
+require_once __DIR__ . '/../../src/webapp_controllers/class_post_maker.php';
 /**
  * Imports the php bean for any post
  */
-require_once __DIR__ . '/../../webapp_model/entities/class_post.php';
+require_once __DIR__ . '/../../src/webapp_model/entities/class_post.php';
 /**
  * Imports the ImageUploadValidator class
  */
-require_once __DIR__ . '/../../webapp_utilities/class_img_upload_validator.php';
+require_once __DIR__ . '/../../src/webapp_utilities/class_img_upload_validator.php';
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
