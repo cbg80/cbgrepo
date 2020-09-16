@@ -5,7 +5,7 @@
  * chown cbg:users /home/cbg/eclipse-workspace/ImageThread/webapp_model/ddbb_credentials.php
  * chmod 640 /home/cbg/eclipse-workspace/ImageThread/webapp_model/ddbb_credentials.php
  * @author Carlos Blanco Gañán <carlos_blanga@yahoo.es>
- * @package webapp_model
+ * @package config
  */
 /**
  * host name of mariadb server

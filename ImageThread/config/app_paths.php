@@ -2,7 +2,7 @@
 /**
  * Declares all parameterized paths of the app as constants
  * 
- * @package webapp_utilities
+ * @package config
  */
 /**
  * Relative path to the image folder of any posts
