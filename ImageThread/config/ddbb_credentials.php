@@ -2,9 +2,9 @@
 /**
  * Declares all database connection parameters as constants
  * 
- * @author Carlos Blanco Gañán <carlos_blanga@yahoo.es>
  * chown cbg80:users /home/cbg80/eclipse/eclipse-workspace/cbgrepo/ImageThread/config/ddbb_credentials.php
  * chmod 640 /home/cbg80/eclipse/eclipse-workspace/cbgrepo/ImageThread/config/ddbb_credentials.php
+ * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  * @package config
  */
 /**
