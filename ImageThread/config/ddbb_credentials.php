@@ -10,20 +10,25 @@
 /**
  * host name of mariadb server
  */
-define ( 'SERVER', getenv ( 'MARIADB_PORT_3306_TCP_ADDR' ) );
+if (!defined('SERVER'))
+    define ( 'SERVER', getenv ( 'MARIADB_PORT_3306_TCP_ADDR' ) );
 /**
  * Name of the application database
  */
-define ( 'DATABASE', getenv('DATABASE') );
+if (!defined('DATABASE'))
+    define ( 'DATABASE', getenv('DATABASE') );
 /**
  * Username of the mariadb server
  */
-define ( 'USER', 'root' );
+if (!defined('USER'))
+    define ( 'USER', 'root' );
 /**
  * Password of the user of the mariadb server
  */
-define ( 'PASSWORD', getenv ( 'MARIADB_ENV_MYSQL_ROOT_PASSWORD' ) );
+if (!defined('PASSWORD'))
+    define ( 'PASSWORD', getenv ( 'MARIADB_ENV_MYSQL_ROOT_PASSWORD' ) );
 /**
  * Charset required for any mysql query result
  */
-define ( 'CHARSET', 'utf8' );
+if (!defined('CHARSET'))
+    define ( 'CHARSET', 'utf8' );
