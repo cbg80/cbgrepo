@@ -5,6 +5,7 @@
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
 
+namespace ImageThread\webapp_utilities;
 /**
  * Encapsulates methods to validate the file of any post image uploaded
  *

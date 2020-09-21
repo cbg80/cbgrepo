@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../entities/class_post.php';
 require_once __DIR__ . '/../interfaces/post_manager.php';
 require_once __DIR__ . '/../class_ddbb.php';
+namespace ImageThread\webapp_model\implementations;
 class PostManagerImpl implements PostManager {
 	function createPost(Post $post) {
 		$ret = FALSE;

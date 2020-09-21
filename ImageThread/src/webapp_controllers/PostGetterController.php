@@ -3,6 +3,7 @@
  * Declares PostGetterController class
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
+namespace ImageThread\webapp_controllers;
 /**
  * Imports the factory of entity managers
  */

@@ -9,6 +9,7 @@
  */
 require_once __DIR__ . '/app_paths.php';
 
+namespace ImageThread\webapp_utilities;
 /**
  * Encapsulates methods to manage the storing and naming of any post image uploaded
  *

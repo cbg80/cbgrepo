@@ -5,6 +5,7 @@
  * 
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
+namespace ImageThread\webapp_model\entities;
 /**
  * Encapsulates methods to set and get any property of any post
  *

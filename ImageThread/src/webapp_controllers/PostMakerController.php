@@ -3,6 +3,7 @@
  * Declares PostMakerController class
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
+namespace ImageThread\webapp_controllers;
 /**
  * Imports the php bean for any post
  */

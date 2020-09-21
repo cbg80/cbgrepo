@@ -5,6 +5,7 @@
  */
 // @ /etc/php/php.ini
 // extension=zip.so
+namespace ImageThread\webapp_controllers;
 /**
  * Imports the factory of entity managers
  */

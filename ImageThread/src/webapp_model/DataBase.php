@@ -5,6 +5,7 @@
  */
 // @/etc/php/php.ini
 // extension=pdo_mysql.so
+namespace ImageThread\webapp_model;
 /**
  * Encapsulates methods to connect and disconnect from the database server
  *
