@@ -93,19 +93,19 @@ class ImageUploadValidator
     /**
      * Checks if $_imgUploadInfo['error'] holds data
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     function checkIfFileIsCorrupted()
     {
         if (! isset($this->_imgUploadInfo['error']) or is_array($this->_imgUploadInfo['error'])) {
-            throw new RuntimeException('Uploaded image corrupted', - 7);
+            throw new \RuntimeException('Uploaded image corrupted', - 7);
         }
     }
 
     /**
      * Parses the info held by $_imgUploadInfo['error']
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     function checkFileErrorValue()
     {
@@ -146,14 +146,14 @@ class ImageUploadValidator
                 break;
         }
         if (isset($message, $code)) {
-            throw new RuntimeException($message, $code);
+            throw new \RuntimeException($message, $code);
         }
     }
 
     /**
      * Parses the size data held by $_imgUploadInfo['tmp_name']
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     function checkFileSize()
     {
@@ -166,32 +166,32 @@ class ImageUploadValidator
             $code = - 4;
         }
         if (isset($message, $code)) {
-            throw new RuntimeException($message, $code);
+            throw new \RuntimeException($message, $code);
         }
     }
 
     /**
      * Parses the weigth data stored in $_imgUploadInfo['size']
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     function checkFileWeigth()
     {
         if ($this->_imgUploadInfo['size'] > self::maxWeigth) {
-            throw new RuntimeException('Weigth of uploaded image exceeds server side limit', - 3);
+            throw new \RuntimeException('Weigth of uploaded image exceeds server side limit', - 3);
         }
     }
 
     /**
      * Parses the internet media type data held by $_imgUploadInfo['tmp_name']
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     function checkFileMimeType()
     {
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
         if (($this->mimeType = array_search($finfo->file($this->_imgUploadInfo['tmp_name']), self::$_allowedMimeTypes, TRUE)) === FALSE) {
-            throw new RuntimeException('Not allowed internet media type', - 2);
+            throw new \RuntimeException('Not allowed internet media type', - 2);
         }
     }
 }

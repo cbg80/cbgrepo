@@ -17,7 +17,7 @@ class DataBase {
 	/**
 	 * Connection link to the database server
 	 * 
-	 * @var PDO
+	 * @var \PDO
 	 */
 	private $connDataBase;
 	/**
@@ -31,10 +31,10 @@ class DataBase {
 		require_once 'ddbb_credentials.php';
 		$conn_str = 'mysql:host=' . SERVER . ';dbname=' . DATABASE . ';charset=' . CHARSET;
 		try {
-			$this->connDataBase = new PDO ( $conn_str, USER, PASSWORD );
-			$this->connDataBase->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+			$this->connDataBase = new \PDO ( $conn_str, USER, PASSWORD );
+			$this->connDataBase->setAttribute ( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 			return $this->connDataBase;
-		} catch ( PDOException $ex ) {
+		} catch ( \PDOException $ex ) {
 			print 'ERROR: ' . $ex->getMessage () . '<br/>';
 			$this->connDataBase = NULL;
 		}

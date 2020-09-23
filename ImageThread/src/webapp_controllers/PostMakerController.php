@@ -44,7 +44,7 @@ class PostMakerController {
 			$imgUpValidator->checkFileSize ();
 			$imgUpValidator->checkFileWeigth ();
 			$imgPermName = $imgUpService->moveFile($imgUpInfoArr['tmp_name'], $imgUpValidator->getMimeType());
-		} catch ( RuntimeException $ex ) {
+		} catch ( \RuntimeException $ex ) {
 			$_REQUEST ['error'] ['code'] = $ex->getCode ();
 			$_REQUEST ['error'] ['message'] = $ex->getMessage ();
 			return FALSE;

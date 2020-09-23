@@ -38,7 +38,7 @@ class ImageUploadService
      *            Temporary absolute path of the last uploaded post image
      * @param string $imgUploadMimeType
      *            Internet media type of the last uploaded post image
-     * @throws RuntimeException
+     * @throws \RuntimeException
      * @return string $imgFileNameWithExt Permanent name of the last uploaded post image along with its extension
      */
     public function moveFile($imgUploadTmpName, $imgUploadMimeType): string
@@ -47,7 +47,7 @@ class ImageUploadService
         $imgFileNameWithExt = sprintf('%s.%s', $imgFileName, $imgUploadMimeType);
         $retOfMovUpFile = $this->moveUploadedFile($imgUploadTmpName, ABS_PATH_TO_POST_IMG . $imgFileNameWithExt);
         if (! $retOfMovUpFile) {
-            throw new RuntimeException('Uploaded image cannot be moved', - 1);
+            throw new \RuntimeException('Uploaded image cannot be moved', - 1);
         } else {
             return $imgFileNameWithExt;
         }
@@ -74,9 +74,9 @@ class ImageUploadService
     public static function zipCSVAndImages(string $pathToCSV): string
     {
         chdir(ABS_PATH_TO_POST_IMG);
-        $zip = new ZipArchive();
+        $zip = new \ZipArchive();
         $zipFileName = 'itzip' . md5(uniqid(basename($pathToCSV, '.csv'), TRUE)) . '.zip';
-        if (($ret = $zip->open($zipFileName, ZipArchive::CREATE))) {
+        if (($ret = $zip->open($zipFileName, \ZipArchive::CREATE))) {
             foreach (($ret = scandir('.', SCANDIR_SORT_NONE)) as $value) {
                 if (! in_array($value, [
                     '.',

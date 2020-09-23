@@ -21,7 +21,7 @@ class PostManagerImpl implements PostManager {
 			if ($ret) {
 				$ret = $conn->lastInsertId ();
 			}
-		} catch ( PDOException $ex ) {
+		} catch ( \PDOException $ex ) {
 			print 'ERROR: ' . $ex->getMessage () . '<br/>';
 		} finally {
 			$dataBase->closeConn ();
@@ -38,7 +38,7 @@ class PostManagerImpl implements PostManager {
 			while ( $post = $statement->fetchObject () ) {
 				$posts [] = $post;
 			}
-		} catch ( Exception $ex ) {
+		} catch ( \Exception $ex ) {
 			print 'ERROR: ' . $ex->getMessage () . '<br/>';
 		} finally {
 			$dataBase->closeConn ();
@@ -52,10 +52,10 @@ class PostManagerImpl implements PostManager {
 		$conn = $dataBase->getConn ();
 		try {
 			$statement = $conn->prepare ( $sql );
-			$statement->bindParam ( 1, $postId, PDO::PARAM_INT );
+			$statement->bindParam ( 1, $postId, \PDO::PARAM_INT );
 			$statement->execute ();
 			$post = $statement->fetchObject ();
-		} catch ( PDOException $ex ) {
+		} catch ( \PDOException $ex ) {
 			print 'ERROR: ' . $ex->getMessage () . '<br/>';
 		} finally {
 			$dataBase->closeConn ();
@@ -70,7 +70,7 @@ class PostManagerImpl implements PostManager {
 		try {
 			$statement = $conn->query ( $sql );
 			$numPosts = $statement->fetchObject ()->numPosts;
-		} catch ( PDOException $ex ) {
+		} catch ( \PDOException $ex ) {
 			print 'ERROR: ' . $ex->getMessage () . '<br/>';
 		} finally {
 			$dataBase->closeConn ();
@@ -92,7 +92,7 @@ class PostManagerImpl implements PostManager {
 	    try {
 	        $statement = $conn->prepare($sql);
 	        $ret = $statement->execute($postIdArr);
-	    } catch (PDOException $ex) {
+	    } catch (\PDOException $ex) {
 	        print 'ERROR: ' . $ex->getMessage() . '<br/>';
 	    } finally {
 	        $dataBase->closeConn();
