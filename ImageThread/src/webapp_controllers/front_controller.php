@@ -8,6 +8,9 @@
  * Loads composer default autoloader
  */
 require_once __DIR__ . '/../../vendor/autoload.php';
+use ImageThread\webapp_controllers\PostGetterController;
+use ImageThread\webapp_controllers\PostMakerController;
+use ImageThread\webapp_controllers\PostExporterController;
 
 error_reporting(E_ALL);
 rewriteRequest();
@@ -20,7 +23,6 @@ function rootRequest()
         'doMakePost'
     ])) {
         $getPostsFunc = function (bool $isGotOnly) {
-            require_once __DIR__ . '/class_post_getter.php';
             $postGetterController = new PostGetterController();
             $postGetterController->getNumberOfViews($isGotOnly);
             $postGetterController->getNumberOfPosts();
@@ -37,13 +39,11 @@ function rootRequest()
             $ret = call_user_func($getPostsFunc, FALSE);
             break;
         case 'doMakePost':
-            require_once __DIR__ . '/class_post_maker.php';
             $postMakerController = new PostMakerController();
             $ret = $postMakerController->makePost($_POST['imgTitle'], $_FILES['imgFile']);
             $ret = call_user_func($getPostsFunc, TRUE);
             break;
         case 'doExportPosts':
-            require_once __DIR__ . '/class_post_exporter.php';
             $postExporterController = new PostExporterController();
             $postExporterController->exportPosts();
             break;

@@ -1,6 +1,8 @@
 <?php
-require_once __DIR__ . '/implementations/class_post_manager.php';
 namespace ImageThread\webapp_model;
+
+use ImageThread\webapp_model\implementations\PostManagerImpl;
+
 class EntityManagerFactory {
 	static function getPostManager() {
 		return new PostManagerImpl ();

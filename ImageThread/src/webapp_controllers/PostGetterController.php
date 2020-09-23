@@ -7,15 +7,15 @@ namespace ImageThread\webapp_controllers;
 /**
  * Imports the factory of entity managers
  */
-require_once __DIR__ . '/../webapp_model/class_ent_mgr_factory.php';
+use ImageThread\webapp_model\EntityManagerFactory;
 /**
  * Imports the post manager class PostManagerImpl
  */
-require_once __DIR__ . '/../webapp_model/implementations/class_post_manager.php';
+use ImageThread\webapp_model\implementations\PostManagerImpl;
 /**
  * Imports the class ImageUploadService
  */
-require_once __DIR__ .  '/../webapp_utilities/class_img_upload_service.php';
+use ImageThread\webapp_utilities\ImageUploadService;
 /**
  * Encapsulates methods to manage the retrieval of any post
  *
