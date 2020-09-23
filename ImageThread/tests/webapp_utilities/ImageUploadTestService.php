@@ -8,14 +8,14 @@ namespace ImageThreadTests\webapp_utilities;
 /**
  * Imports the ImageUploadService class
  */
-require_once __DIR__ . '/../../webapp_utilities/class_img_upload_service.php';
+use ImageThread\webapp_utilities\ImageUploadService;
 
 /**
  * Extends ImageUploadService class for testing purposes
  *
  * @package tests\webapp_utilities
  */
-final class ImageUploadTestService extends \ImageUploadService
+final class ImageUploadTestService extends ImageUploadService
 {
 
     /**

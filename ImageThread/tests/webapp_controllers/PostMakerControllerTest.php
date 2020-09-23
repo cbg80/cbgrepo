@@ -9,23 +9,23 @@ namespace ImageThreadTests\webapp_controllers;
 /**
  * Imports the factory of entity managers
  */
-require_once __DIR__ . '/../../src/webapp_model/class_ent_mgr_factory.php';
+use ImageThread\webapp_model\EntityManagerFactory;
 /**
  * Imports the post manager class PostManagerImpl
  */
-require_once __DIR__ . '/../../src/webapp_model/implementations/class_post_manager.php';
+use ImageThread\webapp_model\implementations\PostManagerImpl;
 /**
  * Imports the PostMakerController class
  */
-require_once __DIR__ . '/../../src/webapp_controllers/class_post_maker.php';
+use ImageThread\webapp_controllers\PostMakerController;
 /**
  * Imports the php bean for any post
  */
-require_once __DIR__ . '/../../src/webapp_model/entities/class_post.php';
+use ImageThread\webapp_model\entities\Post;
 /**
  * Imports the ImageUploadValidator class
  */
-require_once __DIR__ . '/../../src/webapp_utilities/class_img_upload_validator.php';
+use ImageThread\webapp_utilities\ImageUploadValidator;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -54,9 +54,9 @@ class PostMakerControllerTest extends TestCase
         $tmpPath = $fileUpInfoArr['tmp_name'];
         if ($tmpPathAvailable = copy($srcPath, $tmpPath)) {
             $imgUpService = new ImageUploadTestService();
-            $imgUpValidator = new \ImageUploadValidator($fileUpInfoArr);
+            $imgUpValidator = new ImageUploadValidator($fileUpInfoArr);
             $oldNumberOfViews = ImageUploadTestService::getAndSetTotalNumberOfViews(TRUE);
-            $postMgr = \EntityManagerFactory::getPostManager();
+            $postMgr = EntityManagerFactory::getPostManager();
             $oldNumberOfPosts = $postMgr->getNumberOfPosts();
             try {
                 $imgUpValidator->checkIfFileIsCorrupted();
@@ -92,15 +92,15 @@ class PostMakerControllerTest extends TestCase
         $tmpPath = $imgUpInfoArr['tmp_name'];
         if ($tmpPathAvailable = copy($srcPath, $tmpPath)) {
             $oldNumberOfViews = ImageUploadTestService::getAndSetTotalNumberOfViews(TRUE);
-            $postMgr = \EntityManagerFactory::getPostManager();
+            $postMgr = EntityManagerFactory::getPostManager();
             $oldNumberOfPosts = $postMgr->getNumberOfPosts();
-            $postMakerController = new \PostMakerController();
+            $postMakerController = new PostMakerController();
             $postId = $postMakerController->makePost(array_pop($imgUpInfoArr), $imgUpInfoArr, new ImageUploadTestService());
             $updatedNumberOfViews = ImageUploadTestService::getAndSetTotalNumberOfViews(TRUE);
             $updatedNumberOfPosts = $postMgr->getNumberOfPosts();
             $brandNewPost = $postMgr->getPost($postId);
             $imgFileName = ImageUploadTestService::getImageName($srcPath);
-            $imgFileExt = array_search($imgUpInfoArr['type'], \ImageUploadValidator::getAllowedMimeTypes());
+            $imgFileExt = array_search($imgUpInfoArr['type'], ImageUploadValidator::getAllowedMimeTypes());
             $imgFileNameWithExt = sprintf('%s.%s', $imgFileName, $imgFileExt);
             $this->assertTrue(file_exists(getenv('REL_PATH_TO_POST_IMG') . '/' . $imgFileNameWithExt));
             $this->assertEquals($oldNumberOfViews, $updatedNumberOfViews);
@@ -112,7 +112,7 @@ class PostMakerControllerTest extends TestCase
             if ($removePostStatus) {
                 $unlinkPostStatus = unlink(getenv('REL_PATH_TO_POST_IMG') . '/' . $imgFileNameWithExt);
                 if (! $unlinkPostStatus) {
-                    $post = new \Post($brandNewPost->imageTitle, $brandNewPost->imageFileName, $brandNewPost->timestamp);
+                    $post = new Post($brandNewPost->imageTitle, $brandNewPost->imageFileName, $brandNewPost->timestamp);
                     $postMgr->createPost($post);
                 }
             }
