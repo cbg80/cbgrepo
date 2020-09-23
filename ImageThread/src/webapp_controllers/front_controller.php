@@ -7,7 +7,8 @@
 /**
  * Loads composer default autoloader
  */
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../autoload.php';
+
 use ImageThread\webapp_controllers\PostGetterController;
 use ImageThread\webapp_controllers\PostMakerController;
 use ImageThread\webapp_controllers\PostExporterController;

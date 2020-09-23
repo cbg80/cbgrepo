@@ -28,7 +28,6 @@ class DataBase {
 	 * @uses webapp_model\ddbb_credentials.php
 	 */
 	function getConn() {
-		require_once 'ddbb_credentials.php';
 		$conn_str = 'mysql:host=' . SERVER . ';dbname=' . DATABASE . ';charset=' . CHARSET;
 		try {
 			$this->connDataBase = new \PDO ( $conn_str, USER, PASSWORD );
