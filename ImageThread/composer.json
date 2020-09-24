@@ -21,5 +21,12 @@
 		"psr-4" : {
 			"ImageThreadTests\\" : "tests"
 		}
-	}
+	},
+	"license" : "GPL-3.0-or-later",
+	"description" : "Web app for creating posts along with an image file, listing those posts, exporting them and printing total number of posts and views",
+	"authors" : [{
+			"name" : "Carlos Blanco Gañán",
+			"email" : "carlos.blanga@gmail.com"
+		}
+	]
 }
