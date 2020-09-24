@@ -1,5 +1,4 @@
 <?php
-printOutTopBar ();
 function printOutTopBar() {
 	$htmlFormat = <<<EOT
 <div style='overflow:hidden'>

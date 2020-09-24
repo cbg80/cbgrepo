@@ -1,5 +1,4 @@
 <?php
-printOutHtmlHeader ();
 function printOutHtmlHeader() {
 	print <<<EOT
 <!DOCTYPE html>

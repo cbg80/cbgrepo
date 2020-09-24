@@ -1,5 +1,4 @@
 <?php
-printOutImgPostBoxes ();
 function printOutImgPostBoxes() {
 	if (isset ( $_REQUEST ['posts'] ) and is_array ( $_REQUEST ['posts'] ) and count ( $_REQUEST ['posts'] ) > 0) {
 		$htmlFormat = <<<EOT

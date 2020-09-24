@@ -1,5 +1,4 @@
 <?php
-printOutHtmlFooter ();
 function printOutHtmlFooter() {
 	print <<<EOT
 </body>

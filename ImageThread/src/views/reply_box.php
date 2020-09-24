@@ -1,5 +1,4 @@
 <?php
-printOutReplyBox ();
 function printOutReplyBox() {
 	$htmlFormat = <<<EOT
 <div>
