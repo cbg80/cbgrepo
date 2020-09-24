@@ -2,6 +2,31 @@
 	"name" : "imagethread/imagethread",
 	"require-dev" : {
 		"php" : ">=7.0.0",
-		"phpdocumentor/phpdocumentor" : "~2.9"
-	}
+		"phpdocumentor/phpdocumentor" : "~2.9",
+		"phpunit/phpunit" : "~9.2"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"ImageThread\\" : "src"
+		},
+		"files" : [
+			"src/views/header.php",
+			"src/views/top_bar.php",
+			"src/views/reply_box.php",
+			"src/views/img_post_boxes.php",
+			"src/views/footer.php"
+		]
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"ImageThreadTests\\" : "tests"
+		}
+	},
+	"license" : "GPL-3.0-or-later",
+	"description" : "Web app for creating posts along with an image file, listing those posts, exporting them and printing total number of posts and views",
+	"authors" : [{
+			"name" : "Carlos Blanco Gañán",
+			"email" : "carlos.blanga@gmail.com"
+		}
+	]
 }

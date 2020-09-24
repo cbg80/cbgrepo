@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/autoload.php" colors="true">
+  <testsuites>
+    <testsuite name="imageThread">
+      <directory suffix="Test.php">tests</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="DATABASE" value="ImageThreadTest" force="true" />
+    <env name="REL_PATH_TO_POST_IMG" value="tests/assets/img" force="true" />
+    <env name="REL_PATH_TO_VIEW_COUNTER_FILE" value="tests/assets/view_counter.dat" force="true" />
+    <env name="TMPDIR" value="/tmp" force="true" />
+  </php>
+</phpunit>

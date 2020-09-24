@@ -34,4 +34,17 @@ find ./ -type d -iname "*" -print0 | xargs -I {} -0 chmod 0774 {}
 chown root:root ./vendor/bin/phpdoc
 #Asigna los permisos adecuados al comando generador de la documentación del proyecto
 chmod 0744 ./vendor/bin/phpdoc
+
+#refresca los scripts del autoloading
+composer du
+
+#Ejecuta los tests de la app
+php ./vendor/bin/phpunit
+
+#Asigna al superusuario como propietario del comando que ejecuta los tests del proyecto
+chown root:root ./vendor/bin/phpunit
+#Asigna los permisos adecuados al comando que ejecuta los tests del proyecto
+chmod 0744 ./vendor/bin/phpunit
+#Comprobar que el script composer.json puede utilizarse para publicar el projecto como paquete
+composer validate
 $3 $4 $5
