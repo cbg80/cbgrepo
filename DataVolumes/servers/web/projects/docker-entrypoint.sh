@@ -45,4 +45,6 @@ php ./vendor/bin/phpunit
 chown root:root ./vendor/bin/phpunit
 #Asigna los permisos adecuados al comando que ejecuta los tests del proyecto
 chmod 0744 ./vendor/bin/phpunit
+#Comprobar que el script composer.json puede utilizarse para publicar el projecto como paquete
+composer validate
 $3 $4 $5
