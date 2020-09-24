@@ -8,7 +8,14 @@
 	"autoload" : {
 		"psr-4" : {
 			"ImageThread\\" : "src"
-		}
+		},
+		"files" : [
+			"src/views/header.php",
+			"src/views/top_bar.php",
+			"src/views/reply_box.php",
+			"src/views/img_post_boxes.php",
+			"src/views/footer.php"
+		]
 	},
 	"autoload-dev" : {
 		"psr-4" : {
