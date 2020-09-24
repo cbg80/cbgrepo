@@ -5,7 +5,7 @@
  * @author Carlos Blanco Gañán <carlos.blanga@gmail.com>
  */
 /**
- * Loads composer default autoloader
+ * Loads app default autoloader
  */
 require_once __DIR__ . '/../autoload.php';
 
