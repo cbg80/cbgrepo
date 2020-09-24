@@ -28,11 +28,11 @@ function rootRequest()
             $postGetterController->getNumberOfViews($isGotOnly);
             $postGetterController->getNumberOfPosts();
             $postGetterController->getPostsOrderedByTimestamp();
-            require_once __DIR__ . '/../views/header.php';
-            require_once __DIR__ . '/../views/top_bar.php';
-            require_once __DIR__ . '/../views/reply_box.php';
-            require_once __DIR__ . '/../views/img_post_boxes.php';
-            require_once __DIR__ . '/../views/footer.php';
+            printOutHtmlHeader();
+            printOutTopBar();
+            printOutReplyBox();
+            printOutImgPostBoxes();
+            printOutHtmlFooter();
         };
     }
     switch ($_REQUEST['action']) {
