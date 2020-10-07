@@ -55,8 +55,8 @@ RUN apt-get update && \
 	apt-get update && \
 	apt-get --assume-yes install graphviz unzip && \
 	apt-get clean
+WORKDIR $DR/$REMOTE_DIR/$LDRB
 #esto es sólo necesario para el despliegue del proyecto ImageThreadAPI#
-#WORKDIR $DR/$REMOTE_DIR/$LDRB
 #RUN mkdir webapp_model && \
 #	mkdir assets && \
 #	mkdir webapp_controllers && \
