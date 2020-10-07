@@ -63,12 +63,10 @@ RUN apt-get update && \
 #	mkdir webapp_utilities
 #FIN esto es sólo necesario para el despliegue del proyecto ImageThreadAPI#
 EXPOSE 80
-COPY ./docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
 ENV LDRB $LDRB
 ENV REMOTE_DIR $REMOTE_DIR
 ENV LOCAL_DIR $LOCAL_DIR
 ENV DATABASE ImageThread
 ENV REL_PATH_TO_POST_IMG assets/img
 ENV REL_PATH_TO_VIEW_COUNTER_FILE assets/view_counter.dat
-ENTRYPOINT /docker-entrypoint.sh $DR/$REMOTE_DIR/$LDRB $LOCAL_DIR /usr/sbin/apache2ctl -D FOREGROUND
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
