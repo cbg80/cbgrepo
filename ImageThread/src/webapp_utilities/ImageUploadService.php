@@ -42,7 +42,7 @@ class ImageUploadService
         $imgFileNameWithExt = sprintf('%s.%s', $imgFileName, $imgUploadMimeType);
         $retOfMovUpFile = $this->moveUploadedFile($imgUploadTmpName, ABS_PATH_TO_POST_IMG . $imgFileNameWithExt);
         if (! $retOfMovUpFile) {
-            throw new \RuntimeException('Uploaded image cannot be moved', - 1);
+            throw new \RuntimeException(IMG_THREAD_UPLOAD_ERR_MOVED['message'], IMG_THREAD_UPLOAD_ERR_MOVED['code']);
         } else {
             return $imgFileNameWithExt;
         }
