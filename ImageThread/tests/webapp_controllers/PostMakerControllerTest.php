@@ -63,7 +63,7 @@ class PostMakerControllerTest extends TestCase
                 $imgUpValidator->checkFileErrorValue();
                 $imgUpValidator->checkFileMimeType();
                 $imgUpValidator->checkFileSize();
-                $imgUpValidator->checkFileWeigth();
+                $imgUpValidator->checkFileWeight();
                 $imgUpService->moveFile($tmpPath, $imgUpValidator->getMimeType());
             } catch (RuntimeException $ex) {
                 $this->assertEquals($exPropertyValuesArr['code'], $ex->getCode());
