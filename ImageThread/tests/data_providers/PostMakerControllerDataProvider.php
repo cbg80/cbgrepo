@@ -65,7 +65,7 @@ class PostMakerControllerDataProvider
                     'tmp_name' => getenv('TMPDIR') . '/' . $pdfFileName,
                     'type' => 'application/pdf',
                     'size' => 276171,
-                    'error' => 0
+                    'error' => UPLOAD_ERR_OK
                 ],
                 [
                     'code' => IMG_THREAD_UPLOAD_ERR_FORBIDDEN['code'],
