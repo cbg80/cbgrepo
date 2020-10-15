@@ -15,13 +15,6 @@ Picture:&nbsp;<input type='file' name='imgFile' required/>%s<br/>
 </div>
 EOT;
 	if (isset ( $_REQUEST ['error'] ['code'], $_REQUEST ['error'] ['message'] ) and in_array ( $_REQUEST ['error'] ['code'], [ 
-			1,
-			2,
-			3,
-			4,
-			6,
-			7,
-			8 
 	    IMG_THREAD_UPLOAD_ERR_CORRUPTED['code'],
 	    IMG_THREAD_UPLOAD_ERR_UNKNOWN['code'],
 	    IMG_THREAD_UPLOAD_ERR_WIDER['code'],
@@ -29,6 +22,13 @@ EOT;
 	    IMG_THREAD_UPLOAD_ERR_HEAVIER['code'],
 	    IMG_THREAD_UPLOAD_ERR_FORBIDDEN['code'],
 	    IMG_THREAD_UPLOAD_ERR_MOVED['code'],
+	    UPLOAD_ERR_INI_SIZE,
+	    UPLOAD_ERR_FORM_SIZE,
+	    UPLOAD_ERR_PARTIAL,
+	    UPLOAD_ERR_NO_FILE,
+	    UPLOAD_ERR_NO_TMP_DIR,
+	    UPLOAD_ERR_CANT_WRITE,
+	    UPLOAD_ERR_EXTENSION
 	] )) {
 		$htmlErrorMessageFormat = <<<EOT
 <span style="color:red">%s</span>
