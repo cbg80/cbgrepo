@@ -68,8 +68,8 @@ class PostMakerControllerDataProvider
                     'error' => 0
                 ],
                 [
-                    'code' => - 2,
-                    'message' => 'Not allowed internet media type'
+                    'code' => IMG_THREAD_UPLOAD_ERR_FORBIDDEN['code'],
+                    'message' => IMG_THREAD_UPLOAD_ERR_FORBIDDEN['message']
                 ]
             ]
         ];
