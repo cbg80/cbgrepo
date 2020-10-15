@@ -47,7 +47,7 @@ class ImageUploadValidator
 
     const maxHeight = 1080;
 
-    const maxWeigth = 2097152;
+    const maxWeight = 2097152;
 
     /**
      * Class constructor
@@ -174,9 +174,9 @@ class ImageUploadValidator
      *
      * @throws \RuntimeException
      */
-    function checkFileWeigth()
+    function checkFileWeight()
     {
-        if ($this->_imgUploadInfo['size'] > self::maxWeigth) {
+        if ($this->_imgUploadInfo['size'] > self::maxWeight) {
             throw new \RuntimeException(IMG_THREAD_UPLOAD_ERR_HEAVIER['message'], IMG_THREAD_UPLOAD_ERR_HEAVIER['code']);
         }
     }
