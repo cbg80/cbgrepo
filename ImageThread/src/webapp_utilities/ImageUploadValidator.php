@@ -170,7 +170,7 @@ class ImageUploadValidator
     }
 
     /**
-     * Parses the weigth data stored in $_imgUploadInfo['size']
+     * Parses the weight data stored in $_imgUploadInfo['size']
      *
      * @throws \RuntimeException
      */
