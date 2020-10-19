@@ -47,7 +47,7 @@ class ImageUploadValidator
 
     const maxHeight = 1080;
 
-    const maxWeigth = 2097152;
+    const maxWeight = 2097152;
 
     /**
      * Class constructor
@@ -97,7 +97,7 @@ class ImageUploadValidator
     function checkIfFileIsCorrupted()
     {
         if (! isset($this->_imgUploadInfo['error']) or is_array($this->_imgUploadInfo['error'])) {
-            throw new \RuntimeException('Uploaded image corrupted', - 7);
+            throw new \RuntimeException(IMG_THREAD_UPLOAD_ERR_CORRUPTED['message'], IMG_THREAD_UPLOAD_ERR_CORRUPTED['code']);
         }
     }
 
@@ -140,8 +140,8 @@ class ImageUploadValidator
                 $code = UPLOAD_ERR_EXTENSION;
                 break;
             default:
-                $message = 'Unknown upload error';
-                $code = '-6';
+                $message = IMG_THREAD_UPLOAD_ERR_UNKNOWN['message'];
+                $code = IMG_THREAD_UPLOAD_ERR_UNKNOWN['code'];
                 break;
         }
         if (isset($message, $code)) {
@@ -158,11 +158,11 @@ class ImageUploadValidator
     {
         list ($width, $height) = getimagesize($this->_imgUploadInfo['tmp_name']);
         if ($width > self::maxWidth) {
-            $message = 'Width of uploaded image exceeds server side limit';
-            $code = - 5;
+            $message = IMG_THREAD_UPLOAD_ERR_WIDER['message'];
+            $code = IMG_THREAD_UPLOAD_ERR_WIDER['code'];
         } elseif ($height > self::maxHeight) {
-            $message = 'Height of uploaded image exceeds server side limit';
-            $code = - 4;
+            $message = IMG_THREAD_UPLOAD_ERR_HIGHER['message'];
+            $code = IMG_THREAD_UPLOAD_ERR_HIGHER['code'];
         }
         if (isset($message, $code)) {
             throw new \RuntimeException($message, $code);
@@ -170,14 +170,14 @@ class ImageUploadValidator
     }
 
     /**
-     * Parses the weigth data stored in $_imgUploadInfo['size']
+     * Parses the weight data stored in $_imgUploadInfo['size']
      *
      * @throws \RuntimeException
      */
-    function checkFileWeigth()
+    function checkFileWeight()
     {
-        if ($this->_imgUploadInfo['size'] > self::maxWeigth) {
-            throw new \RuntimeException('Weigth of uploaded image exceeds server side limit', - 3);
+        if ($this->_imgUploadInfo['size'] > self::maxWeight) {
+            throw new \RuntimeException(IMG_THREAD_UPLOAD_ERR_HEAVIER['message'], IMG_THREAD_UPLOAD_ERR_HEAVIER['code']);
         }
     }
 
@@ -190,7 +190,7 @@ class ImageUploadValidator
     {
         $finfo = new \finfo(FILEINFO_MIME_TYPE);
         if (($this->mimeType = array_search($finfo->file($this->_imgUploadInfo['tmp_name']), self::$_allowedMimeTypes, TRUE)) === FALSE) {
-            throw new \RuntimeException('Not allowed internet media type', - 2);
+            throw new \RuntimeException(IMG_THREAD_UPLOAD_ERR_FORBIDDEN['message'], IMG_THREAD_UPLOAD_ERR_FORBIDDEN['code']);
         }
     }
 }

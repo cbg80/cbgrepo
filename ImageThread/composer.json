@@ -28,5 +28,32 @@
 			"name" : "Carlos Blanco Gañán",
 			"email" : "carlos.blanga@gmail.com"
 		}
-	]
+	],
+	"scripts" : {
+		"post-root-package-install" : [
+			"chown -R www-data:www-data ./",
+			"chmod -R 0664 ./",
+			"find ./ -type d -iname \"*\" -print0 | xargs -I {} -0 chmod 0774 {}"
+		],
+		"post-create-project-cmd" : [
+			"chown root:root ./vendor/bin/phpdoc",
+			"chmod 0744 ./vendor/bin/phpdoc",
+			"chown root:root ./vendor/bin/phpunit",
+			"chmod 0744 ./vendor/bin/phpunit"
+		],
+		"doc" : [
+			"Composer\\Config::disableProcessTimeout",
+			"phpdoc -d . -t ./doc --template=\"responsive\" --sourcecode --ignore \"vendor/*\""
+		],
+		"test" : [
+			"Composer\\Config::disableProcessTimeout",
+			"@composer du",
+			"phpunit"
+		]
+	},
+	"scripts-descriptions" : {
+		"doc" : "Generate source code documentation via phpdoc command",
+		"test" : "Run all tests via phpunit commnand"
+	},
+	"type" : "library"
 }

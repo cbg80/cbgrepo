@@ -65,11 +65,11 @@ class PostMakerControllerDataProvider
                     'tmp_name' => getenv('TMPDIR') . '/' . $pdfFileName,
                     'type' => 'application/pdf',
                     'size' => 276171,
-                    'error' => 0
+                    'error' => UPLOAD_ERR_OK
                 ],
                 [
-                    'code' => - 2,
-                    'message' => 'Not allowed internet media type'
+                    'code' => IMG_THREAD_UPLOAD_ERR_FORBIDDEN['code'],
+                    'message' => IMG_THREAD_UPLOAD_ERR_FORBIDDEN['message']
                 ]
             ]
         ];
