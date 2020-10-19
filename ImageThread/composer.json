@@ -54,5 +54,6 @@
 	"scripts-descriptions" : {
 		"doc" : "Generate source code documentation via phpdoc command",
 		"test" : "Run all tests via phpunit commnand"
-	}
+	},
+	"type" : "library"
 }
